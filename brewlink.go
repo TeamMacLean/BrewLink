@@ -9,10 +9,12 @@ import (
 	"path"
 	"errors"
 	"log"
+	"path/filepath"
 )
 
 var (
 	config Config
+	pathToMe string
 )
 
 type Config struct {
@@ -21,6 +23,11 @@ type Config struct {
 }
 
 func main() {
+
+	pathToMe, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	check(err)
+	//fmt.Println(dir)
+
 	//new cli app
 	app := cli.NewApp()
 	app.Name = "BrewLink"
@@ -47,8 +54,11 @@ func main() {
 
 func loadConfig() error {
 
+	//path to configFile
+	configPath := path.Join(pathToMe, ".brewlink.json")
+
 	//read config
-	dat, err := ioutil.ReadFile("./.brewlink.json")
+	dat, err := ioutil.ReadFile(configPath)
 	check(err)
 
 	//create empty Config struct
