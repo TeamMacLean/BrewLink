@@ -15,6 +15,7 @@ import (
 var (
 	config Config
 	pathToMe string
+	err error
 )
 
 type Config struct {
@@ -24,7 +25,7 @@ type Config struct {
 
 func main() {
 
-	pathToMe, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	pathToMe, err = filepath.Abs(filepath.Dir(os.Args[0]))
 	check(err)
 	//fmt.Println(dir)
 
