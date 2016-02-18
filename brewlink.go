@@ -9,7 +9,7 @@ import (
 	"path"
 	"errors"
 	"log"
-	"path/filepath"
+	"github.com/kardianos/osext"
 )
 
 var (
@@ -25,7 +25,8 @@ type Config struct {
 
 func main() {
 
-	pathToMe, err = filepath.Abs(filepath.Dir(os.Args[0]))
+	//pathToMe, err = filepath.Abs(filepath.Dir(os.Args[0]))
+	pathToMe, err = osext.ExecutableFolder()
 	check(err)
 
 	//new cli app
