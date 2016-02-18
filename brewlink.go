@@ -27,7 +27,6 @@ func main() {
 
 	pathToMe, err = filepath.Abs(filepath.Dir(os.Args[0]))
 	check(err)
-	//fmt.Println(dir)
 
 	//new cli app
 	app := cli.NewApp()
@@ -57,6 +56,8 @@ func loadConfig() error {
 
 	//path to configFile
 	configPath := path.Join(pathToMe, ".brewlink.json")
+
+	//println("looking for config in", configPath)
 
 	//read config
 	dat, err := ioutil.ReadFile(configPath)
@@ -131,10 +132,12 @@ func magic(a string, c cli.Context) {
 		symLinkTarget := path.Join(config.SoftwarePath, toolName, toolVersion, "x86_64")
 
 		//create sym link
-		//err = os.Symlink(oldPath, symLinkTarget)
-		//check(err)
+		err = os.Symlink(oldPath, symLinkTarget)
+		check(err)
 
-		println("linking %v to %v", oldPath, symLinkTarget)
+		println("The link has been created.", symLinkTarget)
+
+		//println("linking %v to %v", oldPath, symLinkTarget)
 	}
 }
 
