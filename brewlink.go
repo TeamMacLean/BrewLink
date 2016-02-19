@@ -1,21 +1,21 @@
 package main
 
 import (
-	"os"
-	"github.com/codegangsta/cli"
-	"strings"
 	"encoding/json"
-	"io/ioutil"
-	"path"
 	"errors"
-	"log"
+	"github.com/codegangsta/cli"
 	"github.com/kardianos/osext"
+	"io/ioutil"
+	"log"
+	"os"
+	"path"
+	"strings"
 )
 
 var (
-	config Config
+	config   Config
 	pathToMe string
-	err error
+	err      error
 )
 
 type Config struct {
@@ -39,7 +39,7 @@ func main() {
 		check(err)
 
 		//check that there is just one argument
-		if (len(c.Args()) == 1) {
+		if len(c.Args()) == 1 {
 			magic(c.Args()[0], *c)
 			//println("Hello", c.Args()[0])
 		} else {
@@ -77,10 +77,10 @@ func loadConfig() error {
 	cExists, cError := exists(config.CellarPath)
 	check(cError)
 
-	if (!sExists) {
+	if !sExists {
 		return errors.New("it seems that the SoftwarePath in your config does not exist, please check .brewlink.json")
 	}
-	if (!cExists) {
+	if !cExists {
 		return errors.New("it seems that the CellarPath in your config does not exist, please check .brewlink.json")
 
 	}
@@ -106,11 +106,11 @@ func magic(a string, c cli.Context) {
 	//split into chunks at '-'
 	splitString := strings.Split(a, "-")
 
-	if (len(splitString) < 2) {
+	if len(splitString) < 2 {
 		//too short
 		println("Error: There should only be one arugument")
 		cli.ShowAppHelp(&c)
-	} else if (len(splitString) > 2) {
+	} else if len(splitString) > 2 {
 		//too long
 		println("Error: There should only be one arugument")
 		cli.ShowAppHelp(&c)
@@ -143,7 +143,7 @@ func magic(a string, c cli.Context) {
 }
 
 func check(e error) {
-	if (e != nil) {
+	if e != nil {
 		log.Fatal(e)
 	}
 }
