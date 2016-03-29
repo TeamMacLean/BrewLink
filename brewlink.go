@@ -43,9 +43,6 @@ func main() {
 			Aliases:[]string{"l"},
 			Usage: "Link package",
 			Action: func(c *cli.Context) {
-
-				println("link", len(c.Args()))
-
 				if len(c.Args()) == 1 {
 					magic(c.Args().First(), *c)
 					//println("Hello", c.Args()[0])
