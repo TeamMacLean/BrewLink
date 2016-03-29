@@ -103,14 +103,11 @@ func showStatus() {
 					found = append(found, split[1])
 				}
 			}
-			//versionsSub, _ := ioutil.ReadDir(versionFolder)
-			//for _, vs := range versionsSub {
-			//	println(vs.Name())
-			//}
 		}
 	}
 	for _, f := range found {
-		println(f)
+		pretty := strings.Replace(f[1:len(f)], "/", " ", -1)
+		println(pretty)
 	}
 
 }
