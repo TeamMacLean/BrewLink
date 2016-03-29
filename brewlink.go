@@ -81,11 +81,18 @@ func showStatus() {
 	//	println(f.Name())
 	//}
 
-	files2, _ := ioutil.ReadDir(config.SoftwarePath)
-	for _, f := range files2 {
-		println(f.Name())
+	folders, _ := ioutil.ReadDir(config.SoftwarePath)
+	for _, f := range folders {
+		insidePath := path.Join(config.SoftwarePath, f.Name())
+		foldersSub, _ := ioutil.ReadDir(insidePath)
+		for _, fs := range foldersSub {
+			versionFolder := path.Join(insidePath, fs.Name())
+			versionsSub, _ := ioutil.ReadDir(versionFolder)
+			for _, vs := range versionsSub {
+				println(vs.Name())
+			}
+		}
 	}
-
 }
 
 func loadConfig() error {
