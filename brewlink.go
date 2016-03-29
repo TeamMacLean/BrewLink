@@ -35,6 +35,7 @@ func main() {
 
 	//new cli app
 	app := cli.NewApp()
+	app.Version = "0.4.2"
 	app.Name = "BrewLink"
 	app.Usage = "Link software installed with brew to somewhere else"
 	app.Commands = []cli.Command{
