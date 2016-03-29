@@ -93,7 +93,10 @@ func showStatus() {
 			if (err != nil) {
 
 			} else {
-				println(ss);
+				print(ss);
+				split := strings.Split(ss, config.CellarPath)
+				println(len(split))
+
 			}
 
 
