@@ -13,9 +13,9 @@ import (
 )
 
 var (
-	config   Config
+	config Config
 	pathToMe string
-	err      error
+	err error
 )
 
 type Config struct {
@@ -29,28 +29,63 @@ func main() {
 	pathToMe, err = osext.ExecutableFolder()
 	check(err)
 
+	err := loadConfig()
+	check(err)
+
 	//new cli app
 	app := cli.NewApp()
 	app.Name = "BrewLink"
 	app.Usage = "Link software installed with brew to somewhere else"
-	app.Action = func(c *cli.Context) {
+	app.Commands = []cli.Command{
+		{
+			Name:"link",
+			Aliases:[]string{"l"},
+			Usage: "Link package",
+			Action: func(c *cli.Context) {
 
-		err := loadConfig()
-		check(err)
+				if len(c.Args()) == 1 {
+					magic(c.Args()[0], *c)
+					//println("Hello", c.Args()[0])
+				} else {
+					//show user the way to use the app
+					cli.ShowAppHelp(c)
+				}
+			},
+		},
+		{
+			Name:"show",
+			Aliases:[]string{"s"},
+			Usage:"Show status of all packages",
+			Action: func(c *cli.Context) {
 
-		//check that there is just one argument
-		if len(c.Args()) == 1 {
-			magic(c.Args()[0], *c)
-			//println("Hello", c.Args()[0])
-		} else {
-			//show user the way to use the app
-			cli.ShowAppHelp(c)
-		}
+				showStatus()
 
+				//if (len(c.Args()) > 0) {
+				//	SetMemory(c.Args().First())
+				//	PrintSuccess(SetMemoryMessage, GetMemory())
+				//} else {
+				//	PrintSuccess(GetMemoryMessage, GetMemory())
+				//}
+			},
+		},
 	}
 
 	//process the above
 	app.Run(os.Args)
+}
+
+func showStatus() {
+
+	//files, _ := ioutil.ReadDir(config.CellarPath)
+	//for _, f := range files {
+	//	println(f.Name())
+	//}
+
+	files2, _ := ioutil.ReadDir(config.SoftwarePath)
+	for _, f := range files2 {
+		println(f.Name())
+	}
+
 }
 
 func loadConfig() error {
