@@ -106,8 +106,8 @@ func showStatus() {
 		}
 	}
 	for _, f := range found {
-		pretty := strings.Replace(f[1:len(f)], "/", " ", -1)
-		println(pretty)
+		split := strings.Split(f[1:len(f)], "/")
+		println(split[0], split[1])
 	}
 
 }
