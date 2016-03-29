@@ -96,7 +96,7 @@ func showStatus() {
 			if (err != nil) {
 
 			} else {
-				print(ss);
+				//print(ss);
 				split := strings.Split(ss, config.CellarPath)
 				splitLen := len(split)
 				if (splitLen == 2) {
@@ -109,7 +109,10 @@ func showStatus() {
 			//}
 		}
 	}
-	println(found)
+	for _, f := range found {
+		println(f)
+	}
+
 }
 
 func loadConfig() error {
