@@ -100,7 +100,7 @@ func showStatus() {
 				split := strings.Split(ss, config.CellarPath)
 				splitLen := len(split)
 				if (splitLen == 2) {
-					found = append(found, split[2])
+					found = append(found, split[1])
 				}
 			}
 			//versionsSub, _ := ioutil.ReadDir(versionFolder)
