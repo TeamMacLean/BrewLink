@@ -82,6 +82,9 @@ func showStatus() {
 	//	println(f.Name())
 	//}
 
+
+	found := []string{}
+
 	folders, _ := ioutil.ReadDir(config.SoftwarePath)
 	for _, f := range folders {
 		insidePath := path.Join(config.SoftwarePath, f.Name())
@@ -95,17 +98,18 @@ func showStatus() {
 			} else {
 				print(ss);
 				split := strings.Split(ss, config.CellarPath)
-				println(len(split))
-
+				splitLen := len(split)
+				if (splitLen == 2) {
+					found = append(found, split[2])
+				}
 			}
-
-
 			//versionsSub, _ := ioutil.ReadDir(versionFolder)
 			//for _, vs := range versionsSub {
 			//	println(vs.Name())
 			//}
 		}
 	}
+	println(found)
 }
 
 func loadConfig() error {
