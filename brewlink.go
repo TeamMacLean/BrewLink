@@ -88,7 +88,9 @@ func showStatus() {
 		foldersSub, _ := ioutil.ReadDir(insidePath)
 		for _, fs := range foldersSub {
 			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
-			println(filepath.EvalSymlinks(versionFolder));
+			ss, err := filepath.EvalSymlinks(versionFolder)
+			check(err)
+			println(ss);
 			//versionsSub, _ := ioutil.ReadDir(versionFolder)
 			//for _, vs := range versionsSub {
 			//	println(vs.Name())
