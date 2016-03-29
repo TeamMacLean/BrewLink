@@ -46,8 +46,8 @@ func main() {
 
 				println("link", c.Args().First())
 
-				if len(c.Args()) == 1 {
-					magic(c.Args()[0], *c)
+				if len(c.Args()) == 2 {
+					magic(c.Args()[1], *c)
 					//println("Hello", c.Args()[0])
 				} else {
 					//show user the way to use the app
