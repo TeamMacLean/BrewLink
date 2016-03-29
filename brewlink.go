@@ -44,10 +44,10 @@ func main() {
 			Usage: "Link package",
 			Action: func(c *cli.Context) {
 
-				println("link", c.Args().First())
+				println("link", len(c.Args()))
 
 				if len(c.Args()) == 2 {
-					magic(c.Args()[1], *c)
+					magic(c.Args().First(), *c)
 					//println("Hello", c.Args()[0])
 				} else {
 					//show user the way to use the app
