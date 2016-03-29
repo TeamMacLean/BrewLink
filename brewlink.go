@@ -86,7 +86,7 @@ func showStatus() {
 		insidePath := path.Join(config.SoftwarePath, f.Name())
 		foldersSub, _ := ioutil.ReadDir(insidePath)
 		for _, fs := range foldersSub {
-			versionFolder := path.Join(insidePath, fs.Name())
+			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
 			versionsSub, _ := ioutil.ReadDir(versionFolder)
 			for _, vs := range versionsSub {
 				println(vs.Name())
