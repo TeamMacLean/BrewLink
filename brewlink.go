@@ -44,6 +44,8 @@ func main() {
 			Usage: "Link package",
 			Action: func(c *cli.Context) {
 
+				println("link", c.Args().First())
+
 				if len(c.Args()) == 1 {
 					magic(c.Args()[0], *c)
 					//println("Hello", c.Args()[0])
@@ -76,12 +78,6 @@ func main() {
 }
 
 func showStatus() {
-
-	//files, _ := ioutil.ReadDir(config.CellarPath)
-	//for _, f := range files {
-	//	println(f.Name())
-	//}
-
 
 	found := []string{}
 
