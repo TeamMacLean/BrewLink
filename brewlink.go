@@ -46,7 +46,7 @@ func main() {
 
 				println("link", len(c.Args()))
 
-				if len(c.Args()) == 2 {
+				if len(c.Args()) == 1 {
 					magic(c.Args().First(), *c)
 					//println("Hello", c.Args()[0])
 				} else {
