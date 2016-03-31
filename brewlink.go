@@ -102,7 +102,7 @@ func listNameVersion(dir string) []string {
 	for _, f := range found {
 		split := strings.Split(f[1:len(f)], "/")
 		//join := strings.Join([split[0], split[1]], "-")
-		append(tidy, split[0] + "-" + split[1])
+		tidy = append(tidy, split[0] + "-" + split[1])
 	}
 	return tidy
 }
