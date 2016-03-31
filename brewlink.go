@@ -83,15 +83,18 @@ func listNameVersion(dir string) []string {
 		foldersSub, _ := ioutil.ReadDir(insidePath)
 		for _, fs := range foldersSub {
 			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
-			ss, err := filepath.EvalSymlinks(versionFolder)
 
 			var finalPath string
 
-			if (err == nil) {
+			if (dir == config.SoftwarePath) {
+				ss, err := filepath.EvalSymlinks(versionFolder)
+				check(err)
 				finalPath = ss
 			} else {
 				finalPath = versionFolder
 			}
+
+			println(finalPath)
 
 			split := strings.Split(finalPath, dir)
 			splitLen := len(split)
