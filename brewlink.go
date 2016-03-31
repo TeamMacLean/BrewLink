@@ -94,9 +94,7 @@ func listNameVersion(dir string) []string {
 
 			if (dir == config.SoftwarePath) {
 				versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
-				vExists, vError := exists(versionFolder);
-				check(vError)
-
+				vExists, _ := exists(versionFolder);
 				if (vExists) {
 					ss, err := filepath.EvalSymlinks(versionFolder)
 					if (err != nil) {
