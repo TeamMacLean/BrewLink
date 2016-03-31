@@ -86,7 +86,7 @@ func listNameVersion(dir string) []string {
 				versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
 				vExists, vError := exists(versionFolder);
 				if (vError == nil && vExists) {
-					println("exists")
+					println(versionFolder, "exists")
 					ss, err := filepath.EvalSymlinks(versionFolder)
 					if (err != nil) {
 						println(versionFolder, "exists and has symlink", ss)
