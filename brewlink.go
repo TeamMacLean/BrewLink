@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/codegangsta/cli"
+	"github.com/fatih/color"
 	"github.com/kardianos/osext"
 	"io/ioutil"
 	"log"
@@ -11,6 +12,7 @@ import (
 	"path"
 	"strings"
 	"path/filepath"
+	"fmt"
 )
 
 var (
@@ -135,11 +137,25 @@ func showStatus() {
 			}
 		}
 		if (found) {
-			println(i, "linked")
+			//println(i, "linked")
+			PrintGreen(i)
 		} else {
-			println(i, "un-linked")
+			PrintRed(i)
+			//println(i, "un-linked")
 		}
 	}
+}
+
+func PrintGreen(s ...interface{}) {
+	color.Set(color.FgRed)
+	fmt.Fprintln(os.Stderr, s...)
+	color.Unset()
+}
+
+func PrintRed(s ...interface{}) {
+	color.Set(color.FgGreen)
+	fmt.Fprintln(os.Stdout, s...)
+	color.Unset()
 }
 
 func loadConfig() error {
