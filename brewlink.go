@@ -87,17 +87,18 @@ func listNameVersion(dir string) []string {
 			if (dir == config.SoftwarePath) {
 				ss, err := filepath.EvalSymlinks(versionFolder)
 				if (err != nil) {
-					split := strings.Split(ss, dir)
+					split := strings.Split(ss, config.CellarPath)
 					splitLen := len(split)
-					println("len", splitLen)
+					println()
+					//println("len", splitLen)
 					if (splitLen == 2) {
 						found = append(found, split[1])
 					}
 				}
 			} else if (dir == config.CellarPath) {
-				split := strings.Split(versionFolder, dir)
+				split := strings.Split(versionFolder, config.CellarPath)
 				splitLen := len(split)
-				println("len", splitLen)
+				//println("len", splitLen)
 				if (splitLen == 2) {
 					found = append(found, split[1])
 				}
