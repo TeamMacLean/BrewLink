@@ -84,24 +84,42 @@ func listNameVersion(dir string) []string {
 		for _, fs := range foldersSub {
 			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
 
-
-			ss, err := filepath.EvalSymlinks(versionFolder)
-
-			var finalPath string
-
-			if (err == nil) {
-				finalPath = ss
-			} else {
-				finalPath = versionFolder
+			if (dir == config.SoftwarePath) {
+				ss, err := filepath.EvalSymlinks(versionFolder)
+				if (err != nil) {
+					split := strings.Split(ss, dir)
+					splitLen := len(split)
+					println("len", splitLen)
+					if (splitLen == 2) {
+						found = append(found, split[1])
+					}
+				}
+			} else if (dir == config.CellarPath) {
+				split := strings.Split(versionFolder, dir)
+				splitLen := len(split)
+				println("len", splitLen)
+				if (splitLen == 2) {
+					found = append(found, split[1])
+				}
 			}
 
-			println(finalPath)
 
-			split := strings.Split(finalPath, dir)
-			splitLen := len(split)
-			if (splitLen == 2) {
-				found = append(found, split[1])
-			}
+
+			//var finalPath string
+			//
+			//if (err == nil) {
+			//	finalPath = ss
+			//} else {
+			//	finalPath = versionFolder
+			//}
+
+			//println(finalPath)
+
+			//split := strings.Split(finalPath, dir)
+			//splitLen := len(split)
+			//if (splitLen == 2) {
+			//	found = append(found, split[1])
+			//}
 		}
 	}
 	tidy := []string{}
@@ -120,24 +138,24 @@ func linkedList() []string {
 }
 
 func showStatus() {
-	//installed := installedList()
-	//linked := linkedList()
-	installedList()
-	linkedList()
+	installed := installedList()
+	linked := linkedList()
+	//installedList()
+	//linkedList()
 	//
-	//for _, i := range installed {
-	//	found := false
-	//	for _, l := range linked {
-	//		if (i == l) {
-	//			found = true
-	//		}
-	//	}
-	//	if (found) {
-	//		println(i, "linked")
-	//	} else {
-	//		//println(i, "un-linked")
-	//	}
-	//}
+	for _, i := range installed {
+		found := false
+		for _, l := range linked {
+			if (i == l) {
+				found = true
+			}
+		}
+		if (found) {
+			println(i, "linked")
+		} else {
+			//println(i, "un-linked")
+		}
+	}
 }
 
 func loadConfig() error {
