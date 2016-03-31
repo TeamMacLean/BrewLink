@@ -113,11 +113,6 @@ func listNameVersion(dir string) []string {
 	for _, f := range found {
 		split := strings.Split(f[1:len(f)], "/")
 		tidy = append(tidy, split[0] + "-" + split[1])
-
-		if (dir == config.SoftwarePath) {
-			println("TIDY", f)
-		}
-
 	}
 	return tidy
 }
@@ -132,20 +127,18 @@ func linkedList() []string {
 func showStatus() {
 	installed := installedList()
 	linked := linkedList()
-	//installedList()
-	//linkedList()
-	//
 	for _, i := range installed {
 		found := false
 		for _, l := range linked {
 			if (i == l) {
+				println("found", i)
 				found = true
 			}
 		}
 		if (found) {
 			//println(i, "linked")
 		} else {
-			println(i, "un-linked")
+			//println(i, "un-linked")
 		}
 	}
 }
