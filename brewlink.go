@@ -128,6 +128,7 @@ func showStatus() {
 	installed := installedList()
 	linked := linkedList()
 	for _, i := range installed {
+		println("checking", i)
 		found := false
 		for _, l := range linked {
 			if (i == l) {
@@ -136,7 +137,7 @@ func showStatus() {
 			}
 		}
 		if (found) {
-			//println(i, "linked")
+			println(i, "linked")
 		} else {
 			println(i, "un-linked")
 		}
