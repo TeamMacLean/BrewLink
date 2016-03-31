@@ -88,7 +88,7 @@ func listNameVersion(dir string) []string {
 				if (vError == nil && vExists) {
 					println(versionFolder, "exists")
 					ss, err := filepath.EvalSymlinks(versionFolder)
-					if (err != nil) {
+					if (err == nil) {
 						println(versionFolder, "exists and has symlink", ss)
 						split := strings.Split(ss, config.CellarPath)
 						splitLen := len(split)
