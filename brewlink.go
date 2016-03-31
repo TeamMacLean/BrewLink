@@ -75,11 +75,10 @@ func main() {
 	app.Run(os.Args)
 }
 
-func showStatus() {
-
+func listNameVersion(dir string) []string {
 	found := []string{}
 
-	folders, _ := ioutil.ReadDir(config.SoftwarePath)
+	folders, _ := ioutil.ReadDir(dir)
 	for _, f := range folders {
 		insidePath := path.Join(config.SoftwarePath, f.Name())
 		foldersSub, _ := ioutil.ReadDir(insidePath)
@@ -99,11 +98,33 @@ func showStatus() {
 			}
 		}
 	}
+	tidy := []string{}
 	for _, f := range found {
 		split := strings.Split(f[1:len(f)], "/")
-		println(split[0], split[1])
+		//join := strings.Join([split[0], split[1]], "-")
+		append(tidy, split[0] + "-" + split[1])
 	}
+	return tidy
+}
 
+func installedList() {
+	list := listNameVersion(config.SoftwarePath)
+	println("INSTALLED")
+	for _, f := range list {
+		println(f)
+	}
+}
+func linkedList() {
+	list := listNameVersion(config.CellarPath)
+	println("LINKED")
+	for _, f := range list {
+		println(f)
+	}
+}
+
+func showStatus() {
+	installedList()
+	linkedList()
 }
 
 func loadConfig() error {
