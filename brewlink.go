@@ -91,7 +91,7 @@ func listNameVersion(dir string) []string {
 					splitLen := len(split)
 
 					for _, s := range split {
-						println(ss, "split:", s)
+						println(versionFolder,"TO",ss)
 					}
 
 					//println("len", splitLen)
