@@ -131,14 +131,14 @@ func showStatus() {
 		found := false
 		for _, l := range linked {
 			if (i == l) {
-				println("found", i)
+				//println("found", i)
 				found = true
 			}
 		}
 		if (found) {
 			//println(i, "linked")
 		} else {
-			//println(i, "un-linked")
+			println(i, "un-linked")
 		}
 	}
 }
