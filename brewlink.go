@@ -74,7 +74,16 @@ func main() {
 	//process the above
 	app.Run(os.Args)
 }
-
+//func exists(path string) (bool, error) {
+//	_, err := os.Stat(path)
+//	if err == nil {
+//		return true, nil
+//	}
+//	if os.IsNotExist(err) {
+//		return false, nil
+//	}
+//	return true, err
+//}
 func listNameVersion(dir string) []string {
 	found := []string{}
 	folders, _ := ioutil.ReadDir(dir)
@@ -85,19 +94,28 @@ func listNameVersion(dir string) []string {
 
 			if (dir == config.SoftwarePath) {
 				versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
-				ss, err := filepath.EvalSymlinks(versionFolder)
-				if (err != nil) {
-					split := strings.Split(ss, config.CellarPath)
-					splitLen := len(split)
+				vExists, vError := exists(versionFolder);
+				check(vError)
 
-					for _, s := range split {
-						println(versionFolder,"TO",s)
-					}
+				if (vExists) {
+					ss, err := filepath.EvalSymlinks(versionFolder)
+					if (err != nil) {
+						split := strings.Split(ss, config.CellarPath)
+						splitLen := len(split)
 
-					//println("len", splitLen)
-					if (splitLen == 2) {
-						found = append(found, split[1])
+						for _, s := range split {
+							println(versionFolder, "TO", s)
+						}
+
+						//println("len", splitLen)
+						if (splitLen == 2) {
+							found = append(found, split[1])
+						}
+					} else {
+						//its not symlinked
 					}
+				} else {
+					//doesnt exists
 				}
 			} else if (dir == config.CellarPath) {
 				versionFolder := path.Join(insidePath, fs.Name())
