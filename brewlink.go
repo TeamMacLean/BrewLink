@@ -138,9 +138,9 @@ func showStatus() {
 		}
 		if (found) {
 			//println(i, "linked")
-			PrintGreen(i)
-		} else {
 			PrintRed(i)
+		} else {
+			PrintGreen(i)
 			//println(i, "un-linked")
 		}
 	}
