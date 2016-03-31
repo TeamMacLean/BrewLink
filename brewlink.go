@@ -77,7 +77,6 @@ func main() {
 
 func listNameVersion(dir string) []string {
 	found := []string{}
-
 	folders, _ := ioutil.ReadDir(dir)
 	for _, f := range folders {
 		insidePath := path.Join(dir, f.Name())
@@ -86,10 +85,8 @@ func listNameVersion(dir string) []string {
 			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
 			ss, err := filepath.EvalSymlinks(versionFolder)
 
-			if (err != nil) {
-
-			} else {
-				//print(ss);
+			if (err == nil) {
+				println(ss)
 				split := strings.Split(ss, dir)
 				splitLen := len(split)
 				if (splitLen == 2) {
@@ -101,7 +98,6 @@ func listNameVersion(dir string) []string {
 	tidy := []string{}
 	for _, f := range found {
 		split := strings.Split(f[1:len(f)], "/")
-		//join := strings.Join([split[0], split[1]], "-")
 		tidy = append(tidy, split[0] + "-" + split[1])
 	}
 	return tidy
