@@ -129,7 +129,7 @@ func showStatus() {
 		if (found) {
 			println(i, "linked")
 		} else {
-			println(i, "un-linked")
+			//println(i, "un-linked")
 		}
 	}
 }
