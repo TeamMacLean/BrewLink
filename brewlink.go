@@ -85,15 +85,18 @@ func listNameVersion(dir string) []string {
 			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
 			ss, err := filepath.EvalSymlinks(versionFolder)
 
+			var finalPath string
+
 			if (err == nil) {
-				//println(ss)
-				split := strings.Split(ss, dir)
-				splitLen := len(split)
-				if (splitLen == 2) {
-					found = append(found, split[1])
-				}
+				finalPath == ss
 			} else {
-				println("ERROR", err)
+				finalPath == versionFolder
+			}
+
+			split := strings.Split(finalPath, dir)
+			splitLen := len(split)
+			if (splitLen == 2) {
+				found = append(found, split[1])
 			}
 		}
 	}
