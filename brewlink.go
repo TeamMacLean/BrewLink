@@ -89,7 +89,11 @@ func listNameVersion(dir string) []string {
 				if (err != nil) {
 					split := strings.Split(ss, config.CellarPath)
 					splitLen := len(split)
-					println()
+
+					for _, s := range split {
+						println("split:", s)
+					}
+
 					//println("len", splitLen)
 					if (splitLen == 2) {
 						found = append(found, split[1])
