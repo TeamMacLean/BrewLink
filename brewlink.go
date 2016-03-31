@@ -84,7 +84,7 @@ func listNameVersion(dir string) []string {
 		for _, fs := range foldersSub {
 			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
 
-			
+
 			ss, err := filepath.EvalSymlinks(versionFolder)
 
 			var finalPath string
@@ -94,6 +94,8 @@ func listNameVersion(dir string) []string {
 			} else {
 				finalPath = versionFolder
 			}
+
+			println(finalPath)
 
 			split := strings.Split(finalPath, dir)
 			splitLen := len(split)
@@ -118,22 +120,22 @@ func linkedList() []string {
 }
 
 func showStatus() {
-	installed := installedList()
-	linked := linkedList()
-
-	for _, i := range installed {
-		found := false
-		for _, l := range linked {
-			if (i == l) {
-				found = true
-			}
-		}
-		if (found) {
-			println(i, "linked")
-		} else {
-			//println(i, "un-linked")
-		}
-	}
+	//installed := installedList()
+	//linked := linkedList()
+	//
+	//for _, i := range installed {
+	//	found := false
+	//	for _, l := range linked {
+	//		if (i == l) {
+	//			found = true
+	//		}
+	//	}
+	//	if (found) {
+	//		println(i, "linked")
+	//	} else {
+	//		//println(i, "un-linked")
+	//	}
+	//}
 }
 
 func loadConfig() error {
