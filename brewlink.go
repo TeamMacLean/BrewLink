@@ -85,9 +85,6 @@ func listNameVersion(dir string) []string {
 			versionFolder := path.Join(insidePath, fs.Name(), "x86_64")
 
 			if (dir == config.SoftwarePath) {
-
-				println(versionFolder)
-
 				ss, err := filepath.EvalSymlinks(versionFolder)
 				if (err != nil) {
 					split := strings.Split(ss, config.CellarPath)
@@ -103,6 +100,7 @@ func listNameVersion(dir string) []string {
 					}
 				}
 			} else if (dir == config.CellarPath) {
+				println(versionFolder)
 				split := strings.Split(versionFolder, config.CellarPath)
 				splitLen := len(split)
 				//println("len", splitLen)
