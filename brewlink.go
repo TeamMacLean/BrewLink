@@ -101,8 +101,8 @@ func listNameVersion(dir string) []string {
 				}
 			} else if (dir == config.CellarPath) {
 				versionFolder := path.Join(insidePath, fs.Name())
-				println("version",versionFolder)
 				split := strings.Split(versionFolder, config.CellarPath)
+				println("split",split[1])
 				splitLen := len(split)
 				//println("len", splitLen)
 				if (splitLen == 2) {
