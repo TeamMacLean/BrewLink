@@ -118,21 +118,19 @@ func listNameVersion(dir string) []string {
 }
 
 func installedList() []string {
-	return listNameVersion(config.SoftwarePath)
+	return listNameVersion(config.CellarPath)
 }
 func linkedList() []string {
-	return listNameVersion(config.CellarPath)
+	return listNameVersion(config.SoftwarePath)
 }
 
 func showStatus() {
 	installed := installedList()
 	linked := linkedList()
 	for _, i := range installed {
-		println("checking", i)
 		found := false
 		for _, l := range linked {
 			if (i == l) {
-				//println("found", i)
 				found = true
 			}
 		}
