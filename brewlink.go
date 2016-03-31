@@ -108,24 +108,30 @@ func listNameVersion(dir string) []string {
 	return tidy
 }
 
-func installedList() {
-	list := listNameVersion(config.SoftwarePath)
-	println("INSTALLED")
-	for _, f := range list {
-		println(f)
-	}
+func installedList() []string {
+	return listNameVersion(config.SoftwarePath)
 }
-func linkedList() {
-	list := listNameVersion(config.CellarPath)
-	println("LINKED")
-	for _, f := range list {
-		println(f)
-	}
+func linkedList() []string {
+	return listNameVersion(config.CellarPath)
 }
 
 func showStatus() {
-	installedList()
-	linkedList()
+	installed := installedList()
+	linked := linkedList()
+
+	for _, i := range installed {
+		found := false
+		for _, l := range linked {
+			if (i == l) {
+				found = true
+			}
+		}
+		if (found) {
+			println(i, "linked")
+		} else {
+			println(i, "un-linked")
+		}
+	}
 }
 
 func loadConfig() error {
