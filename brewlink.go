@@ -88,15 +88,8 @@ func listNameVersion(dir string) []string {
 				if (vError == nil && vExists) {
 					ss, err := filepath.EvalSymlinks(versionFolder)
 					if (err == nil) {
-						println(versionFolder, "exists and has symlink", ss)
 						split := strings.Split(ss, config.CellarPath)
 						splitLen := len(split)
-
-						//for _, s := range split {
-						//	println(versionFolder, "TO", s)
-						//}
-
-						//println("len", splitLen)
 						if (splitLen == 2) {
 							found = append(found, split[1])
 						}
@@ -146,9 +139,9 @@ func showStatus() {
 			}
 		}
 		if (found) {
-			println(i, "linked")
+			//println(i, "linked")
 		} else {
-			//println(i, "un-linked")
+			println(i, "un-linked")
 		}
 	}
 }
