@@ -114,7 +114,9 @@ func listNameVersion(dir string) []string {
 		split := strings.Split(f[1:len(f)], "/")
 		tidy = append(tidy, split[0] + "-" + split[1])
 
-		println("TIDY", f)
+		if (dir == config.CellarPath) {
+			println("TIDY", f)
+		}
 
 	}
 	return tidy
