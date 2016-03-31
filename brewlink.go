@@ -122,6 +122,8 @@ func linkedList() []string {
 func showStatus() {
 	//installed := installedList()
 	//linked := linkedList()
+	installedList()
+	linkedList()
 	//
 	//for _, i := range installed {
 	//	found := false
