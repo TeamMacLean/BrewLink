@@ -88,9 +88,9 @@ func listNameVersion(dir string) []string {
 			var finalPath string
 
 			if (err == nil) {
-				finalPath == ss
+				finalPath = ss
 			} else {
-				finalPath == versionFolder
+				finalPath = versionFolder
 			}
 
 			split := strings.Split(finalPath, dir)
