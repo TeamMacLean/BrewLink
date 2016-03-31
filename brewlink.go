@@ -102,9 +102,7 @@ func listNameVersion(dir string) []string {
 			} else if (dir == config.CellarPath) {
 				versionFolder := path.Join(insidePath, fs.Name())
 				split := strings.Split(versionFolder, config.CellarPath)
-				println("split",split[1])
 				splitLen := len(split)
-				//println("len", splitLen)
 				if (splitLen == 2) {
 					found = append(found, split[1])
 				}
@@ -115,6 +113,9 @@ func listNameVersion(dir string) []string {
 	for _, f := range found {
 		split := strings.Split(f[1:len(f)], "/")
 		tidy = append(tidy, split[0] + "-" + split[1])
+
+		println("TIDY", f)
+
 	}
 	return tidy
 }
